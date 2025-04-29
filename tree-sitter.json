@@ -1,0 +1,39 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "garnet",
+      "camelcase": "Garnet",
+      "title": "Garnet",
+      "scope": "source.garnet",
+      "file-types": [
+        "grn"
+      ],
+      "injection-regex": "^garnet$",
+      "class-name": "TreeSitterGarnet"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Garnet grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "ark231",
+        "url": "https://ark231.github.io/"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/ark231/Garnet"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
