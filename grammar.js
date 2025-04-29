@@ -48,8 +48,20 @@ module.exports = grammar({
     ),
     block: $ => seq(
       "{",
-      // TODO: implment
+      repeat(
+        choice(
+          $.comment,
+          $.sentence
+        )
+      ),
       "}"
+    ),
+    comment: $ => seq(
+      "#",
+      /.*/
+    ),
+    sentence: $ => choice(
+
     )
   }
 });
