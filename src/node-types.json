@@ -127,48 +127,8 @@
         "required": true,
         "types": [
           {
-            "type": "f32",
-            "named": false
-          },
-          {
-            "type": "f64",
-            "named": false
-          },
-          {
-            "type": "i16",
-            "named": false
-          },
-          {
-            "type": "i32",
-            "named": false
-          },
-          {
-            "type": "i64",
-            "named": false
-          },
-          {
-            "type": "i8",
-            "named": false
-          },
-          {
-            "type": "identifier",
+            "type": "type",
             "named": true
-          },
-          {
-            "type": "u16",
-            "named": false
-          },
-          {
-            "type": "u32",
-            "named": false
-          },
-          {
-            "type": "u64",
-            "named": false
-          },
-          {
-            "type": "u8",
-            "named": false
           }
         ]
       }
@@ -241,6 +201,21 @@
     }
   },
   {
+    "type": "type",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "variable_declaration",
     "named": true,
     "fields": {
@@ -259,48 +234,8 @@
         "required": true,
         "types": [
           {
-            "type": "f32",
-            "named": false
-          },
-          {
-            "type": "f64",
-            "named": false
-          },
-          {
-            "type": "i16",
-            "named": false
-          },
-          {
-            "type": "i32",
-            "named": false
-          },
-          {
-            "type": "i64",
-            "named": false
-          },
-          {
-            "type": "i8",
-            "named": false
-          },
-          {
-            "type": "identifier",
+            "type": "type",
             "named": true
-          },
-          {
-            "type": "u16",
-            "named": false
-          },
-          {
-            "type": "u32",
-            "named": false
-          },
-          {
-            "type": "u64",
-            "named": false
-          },
-          {
-            "type": "u8",
-            "named": false
           }
         ]
       }

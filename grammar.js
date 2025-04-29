@@ -24,7 +24,7 @@ module.exports = grammar({
       field("name", $.identifier),
       field("parameters", $.parameter_list),
       "->",
-      field("return_type", $._type),
+      field("return_type", $.type),
       field("body", $.block)
     ),
     identifier: $ => /[a-zA-Z][a-zA-Z0-9_]*/,
@@ -45,7 +45,7 @@ module.exports = grammar({
       ),
       ")"
     ),
-    _type: $ => choice(
+    type: $ => choice(
       "u8",
       "i8",
       "u16",
@@ -109,7 +109,7 @@ module.exports = grammar({
       choice("var", "let"),
       field("name", $.identifier),
       ":",
-      field("type", $._type)
+      field("type", $.type)
     ),
     variable_definition: $ => seq(
       $.variable_declaration,
