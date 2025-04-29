@@ -206,7 +206,7 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "comment"
+                "name": "_comment"
               },
               {
                 "type": "SYMBOL",
@@ -221,18 +221,26 @@
         }
       ]
     },
-    "comment": {
-      "type": "SEQ",
+    "_comment": {
+      "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "#"
+          "type": "SYMBOL",
+          "name": "oneline_comment"
         },
         {
-          "type": "PATTERN",
-          "value": ".*"
+          "type": "SYMBOL",
+          "name": "multiline_comment"
         }
       ]
+    },
+    "oneline_comment": {
+      "type": "PATTERN",
+      "value": "#.*"
+    },
+    "multiline_comment": {
+      "type": "PATTERN",
+      "value": "#\\*(.|\\n)*?\\*#"
     },
     "_sentence": {
       "type": "CHOICE",

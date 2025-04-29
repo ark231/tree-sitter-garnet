@@ -35,11 +35,15 @@
       "required": false,
       "types": [
         {
-          "type": "comment",
+          "type": "expression_sentence",
           "named": true
         },
         {
-          "type": "expression_sentence",
+          "type": "multiline_comment",
+          "named": true
+        },
+        {
+          "type": "oneline_comment",
           "named": true
         },
         {
@@ -56,11 +60,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "comment",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "expression_sentence",
@@ -384,10 +383,6 @@
     }
   },
   {
-    "type": "#",
-    "named": false
-  },
-  {
     "type": "%",
     "named": false
   },
@@ -486,6 +481,14 @@
   {
     "type": "let",
     "named": false
+  },
+  {
+    "type": "multiline_comment",
+    "named": true
+  },
+  {
+    "type": "oneline_comment",
+    "named": true
   },
   {
     "type": "return",

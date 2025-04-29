@@ -62,16 +62,18 @@ module.exports = grammar({
       "{",
       repeat(
         choice(
-          $.comment,
+          $._comment,
           $._sentence
         )
       ),
       "}"
     ),
-    comment: $ => seq(
-      "#",
-      /.*/
+    _comment: $ => choice(
+      $.oneline_comment,
+      $.multiline_comment
     ),
+    oneline_comment: $ => /#.*/,
+    multiline_comment: $ => /#\*(.|\n)*?\*#/,
     _sentence: $ => choice(
       $.expression_sentence,
       $.variable_declaration_sentence,
