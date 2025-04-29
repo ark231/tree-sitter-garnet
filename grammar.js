@@ -11,7 +11,6 @@ module.exports = grammar({
   name: "garnet",
 
   rules: {
-    // TODO: add the actual grammar rules
     source_file: $ => repeat(choice($._definition, $._declaration)),
     _definition: $ => choice(
       $.function_definition,
@@ -22,11 +21,11 @@ module.exports = grammar({
     ),
     function_definition: $ => seq(
       "func",
-      $.identifier,
-      $.parameter_list,
+      field("name", $.identifier),
+      field("parameters", $.parameter_list),
       "->",
-      $._type,
-      $.block
+      field("return_type", $._type),
+      field("body", $.block)
     ),
     identifier: $ => /[a-zA-Z][a-zA-Z0-9_]*/,
     parameter_list: $ => seq(
@@ -106,9 +105,9 @@ module.exports = grammar({
     variable_reference_expression: $ => $.identifier,
     variable_declaration: $ => seq(
       choice("var", "let"),
-      $.identifier,
+      field("name", $.identifier),
       ":",
-      $._type
+      field("type", $._type)
     ),
     variable_definition: $ => seq(
       $.variable_declaration,
