@@ -62,6 +62,11 @@
     }
   },
   {
+    "type": "builtin_type",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "expression_sentence",
     "named": true,
     "fields": {},
@@ -127,7 +132,11 @@
         "required": true,
         "types": [
           {
-            "type": "type",
+            "type": "builtin_type",
+            "named": true
+          },
+          {
+            "type": "user_type",
             "named": true
           }
         ]
@@ -201,12 +210,12 @@
     }
   },
   {
-    "type": "type",
+    "type": "user_type",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "identifier",
@@ -234,7 +243,11 @@
         "required": true,
         "types": [
           {
-            "type": "type",
+            "type": "builtin_type",
+            "named": true
+          },
+          {
+            "type": "user_type",
             "named": true
           }
         ]

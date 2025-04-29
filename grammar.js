@@ -24,7 +24,7 @@ module.exports = grammar({
       field("name", $.identifier),
       field("parameters", $.parameter_list),
       "->",
-      field("return_type", $.type),
+      field("return_type", $._type),
       field("body", $.block)
     ),
     identifier: $ => /[a-zA-Z][a-zA-Z0-9_]*/,
@@ -45,7 +45,11 @@ module.exports = grammar({
       ),
       ")"
     ),
-    type: $ => choice(
+    _type: $ => choice(
+      $.builtin_type,
+      $.user_type
+    ),
+    builtin_type: $ => choice(
       "u8",
       "i8",
       "u16",
@@ -56,8 +60,8 @@ module.exports = grammar({
       "i64",
       "f32",
       "f64",
-      $.identifier
     ),
+    user_type: $ => $.identifier,
     block: $ => seq(
       "{",
       repeat(
@@ -109,7 +113,7 @@ module.exports = grammar({
       choice("var", "let"),
       field("name", $.identifier),
       ":",
-      field("type", $.type)
+      field("type", $._type)
     ),
     variable_definition: $ => seq(
       $.variable_declaration,
