@@ -32,14 +32,18 @@ module.exports = grammar({
     parameter_list: $ => seq(
       "(",
       optional(
-        repeat(
-          seq(
-            $.variable_declaration,
-            ","
-          )
+        seq(
+          optional(
+            repeat(
+              seq(
+                $.variable_declaration,
+                ","
+              )
+            ),
+          ),
+          $.variable_declaration,
         ),
       ),
-      $.variable_declaration,
       ")"
     ),
     _type: $ => choice(
