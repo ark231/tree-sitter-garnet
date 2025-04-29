@@ -10,7 +10,8 @@
         "grn"
       ],
       "injection-regex": "^garnet$",
-      "class-name": "TreeSitterGarnet"
+      "class-name": "TreeSitterGarnet",
+      "highlights": "queries/highlights.scm"
     }
   ],
   "metadata": {
