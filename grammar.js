@@ -122,7 +122,8 @@ module.exports = grammar({
     ),
     _literal: $ => choice(
       $.integer_literal,
-      $.floating_point_literal
+      $.floating_point_literal,
+      $.string_literal,
     ),
     integer_literal: $ => /\d+/,
     floating_point_literal: $ => /\d+\.\d+/,

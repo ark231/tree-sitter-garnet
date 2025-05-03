@@ -696,6 +696,10 @@
         {
           "type": "SYMBOL",
           "name": "floating_point_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string_literal"
         }
       ]
     },
@@ -709,7 +713,7 @@
     },
     "string_literal": {
       "type": "PATTERN",
-      "value": "\\\"([^\"]|\\\\\")*\\\""
+      "value": "\"([^\"]|\\\\\")*\""
     },
     "variable_reference_expression": {
       "type": "SYMBOL",

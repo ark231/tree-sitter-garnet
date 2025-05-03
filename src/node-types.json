@@ -24,6 +24,10 @@
           "named": true
         },
         {
+          "type": "string_literal",
+          "named": true
+        },
+        {
           "type": "variable_reference_expression",
           "named": true
         }
@@ -128,6 +132,10 @@
           "named": true
         },
         {
+          "type": "string_literal",
+          "named": true
+        },
+        {
           "type": "variable_reference_expression",
           "named": true
         }
@@ -174,6 +182,10 @@
           "named": true
         },
         {
+          "type": "string_literal",
+          "named": true
+        },
+        {
           "type": "variable_reference_expression",
           "named": true
         }
@@ -202,6 +214,10 @@
         },
         {
           "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {
@@ -290,6 +306,10 @@
           "named": true
         },
         {
+          "type": "string_literal",
+          "named": true
+        },
+        {
           "type": "variable_reference_expression",
           "named": true
         }
@@ -348,6 +368,10 @@
         },
         {
           "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {
@@ -463,6 +487,10 @@
         },
         {
           "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
           "named": true
         },
         {
@@ -649,6 +677,10 @@
   {
     "type": "return",
     "named": false
+  },
+  {
+    "type": "string_literal",
+    "named": true
   },
   {
     "type": "u16",

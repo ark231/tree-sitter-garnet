@@ -1,9 +1,10 @@
 "func" @keyword.function
-["return" "var" "let"] @keyword
+["return" "var" "let" "loop" "if" "elif" "else"] @keyword
 (builtin_type) @type.builtin
 (user_type) @type
 (integer_literal) @number
 (floating_point_literal) @number.float
+(string_literal) @string
 (oneline_comment) @comment
 (multiline_comment) @comment
 (function_definition name: (identifier) @function)
