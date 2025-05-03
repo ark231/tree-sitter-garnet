@@ -67,7 +67,9 @@ module.exports = grammar({
       repeat(
         choice(
           $._comment,
-          $._sentence
+          $._sentence,
+          $._blocky,
+          $.block,
         )
       ),
       "}"
@@ -82,19 +84,35 @@ module.exports = grammar({
       $.expression_sentence,
       $.variable_declaration_sentence,
       $.variable_definition_sentence,
-      $.return_sentence
+      $.return_sentence,
+      $.break_sentence,
     ),
     expression_sentence: $ => seq($._expression, ";"),
     variable_declaration_sentence: $ => seq($.variable_declaration, ";"),
     variable_definition_sentence: $ => seq($.variable_definition, ";"),
-    _expression: $ => choice(
+    _callable_expression: $ => choice(
+      $.variable_reference_expression,
+      $.function_call,
+      seq("(", $._callable_expression, ")"),
+    ),
+    _uncallable_expression: $ => choice(
       $.binary_expresion,
       $._literal,
-      $.variable_reference_expression
+      seq("(", $._uncallable_expression, ")"),
+    ),
+    _expression: $ => choice(
+      $._callable_expression,
+      $._uncallable_expression
+    ),
+    function_call: $ => seq(
+      $._callable_expression, "(",optional(seq($._expression, repeat(seq(",", $._expression)))) ,")"
     ),
     binary_expresion: $ => choice(
       prec.left(1, seq($._expression, "<", $._expression)),
       prec.left(1, seq($._expression, ">", $._expression)),
+      prec.left(1, seq($._expression, "<=", $._expression)),
+      prec.left(1, seq($._expression, ">=", $._expression)),
+      prec.left(2, seq($._expression, "==", $._expression)),
       prec.left(2, seq($._expression, "=", $._expression)),
       prec.left(3, seq($._expression, "+", $._expression)),
       prec.left(3, seq($._expression, "-", $._expression)),
@@ -108,6 +126,7 @@ module.exports = grammar({
     ),
     integer_literal: $ => /\d+/,
     floating_point_literal: $ => /\d+\.\d+/,
+    string_literal: $ => /"([^"]|\\")*"/,
     variable_reference_expression: $ => $.identifier,
     variable_declaration: $ => seq(
       choice("var", "let"),
@@ -124,6 +143,35 @@ module.exports = grammar({
       "return",
       optional($._expression),
       ";"
+    ),
+    break_sentence: $ => seq("break", ";"),
+    loop_statement: $ => seq(
+      "loop",
+      $.block
+    ),
+    if_statement: $ => seq(
+      "if",
+      "(",
+      $._expression,
+      ")",
+      $.block
+    ),
+    elif_statement: $ => seq(
+      "elif",
+      "(",
+      $._expression,
+      ")",
+      $.block
+    ),
+    else_statement: $ => seq(
+      "else",
+      $.block
+    ),
+    _blocky: $ => choice(
+      $.loop_statement,
+      $.if_statement,
+      $.elif_statement,
+      $.else_statement,
     )
   }
 });
