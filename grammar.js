@@ -66,7 +66,6 @@ module.exports = grammar({
       "{",
       repeat(
         choice(
-          $._comment,
           $._sentence,
           $._blocky,
           $.block,
@@ -78,8 +77,9 @@ module.exports = grammar({
       $.oneline_comment,
       $.multiline_comment
     ),
-    oneline_comment: $ => /#.*/,
-    multiline_comment: $ => /#\*(.|\n)*?\*#/,
+    oneline_comment: $ => /#([^*].*)?/,
+    // multiline_comment: $ => /#\*([^#]|\n)*?\*#/,
+    multiline_comment: $ => /#\*([^*#]|\n|([^*]#)|(\*[^#]))*\*#/,
     _sentence: $ => choice(
       $.expression_sentence,
       $.variable_declaration_sentence,
@@ -174,5 +174,6 @@ module.exports = grammar({
       $.elif_statement,
       $.else_statement,
     )
-  }
+  },
+  extras: $ => [/[ ]|\t|(\r?\n)/, $.multiline_comment, $.oneline_comment]
 });

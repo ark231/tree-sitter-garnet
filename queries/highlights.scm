@@ -1,5 +1,8 @@
 "func" @keyword.function
-["return" "var" "let" "loop" "if" "elif" "else"] @keyword
+["loop"] @keyword.loop
+["if" "elif" "else"] @keyword.conditional
+["return"] @keyword.return
+["var" "let" "break"] @keyword
 (builtin_type) @type.builtin
 (user_type) @type
 (integer_literal) @number

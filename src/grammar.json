@@ -219,10 +219,6 @@
             "members": [
               {
                 "type": "SYMBOL",
-                "name": "_comment"
-              },
-              {
-                "type": "SYMBOL",
                 "name": "_sentence"
               },
               {
@@ -257,11 +253,11 @@
     },
     "oneline_comment": {
       "type": "PATTERN",
-      "value": "#.*"
+      "value": "#([^*].*)?"
     },
     "multiline_comment": {
       "type": "PATTERN",
-      "value": "#\\*(.|\\n)*?\\*#"
+      "value": "#\\*([^*#]|\\n|([^*]#)|(\\*[^#]))*\\*#"
     },
     "_sentence": {
       "type": "CHOICE",
@@ -913,7 +909,15 @@
   "extras": [
     {
       "type": "PATTERN",
-      "value": "\\s"
+      "value": "[ ]|\\t|(\\r?\\n)"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "multiline_comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "oneline_comment"
     }
   ],
   "conflicts": [],

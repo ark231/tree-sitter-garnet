@@ -71,14 +71,6 @@
           "named": true
         },
         {
-          "type": "multiline_comment",
-          "named": true
-        },
-        {
-          "type": "oneline_comment",
-          "named": true
-        },
-        {
           "type": "return_sentence",
           "named": true
         },
@@ -668,11 +660,13 @@
   },
   {
     "type": "multiline_comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "oneline_comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "return",
