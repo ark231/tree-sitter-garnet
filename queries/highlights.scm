@@ -13,3 +13,4 @@
 (function_definition name: (identifier) @function)
 (variable_declaration name: (identifier) @variable)
 (variable_reference_expression) @variable
+(function_call callee: (variable_reference_expression) @function.call)

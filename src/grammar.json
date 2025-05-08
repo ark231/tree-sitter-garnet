@@ -400,8 +400,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "_callable_expression"
+          "type": "FIELD",
+          "name": "callee",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_callable_expression"
+          }
         },
         {
           "type": "STRING",

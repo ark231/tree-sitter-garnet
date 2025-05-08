@@ -187,10 +187,33 @@
   {
     "type": "function_call",
     "named": true,
-    "fields": {},
+    "fields": {
+      "callee": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "function_call",
+            "named": true
+          },
+          {
+            "type": "variable_reference_expression",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "binary_expresion",

@@ -105,7 +105,7 @@ module.exports = grammar({
       $._uncallable_expression
     ),
     function_call: $ => seq(
-      $._callable_expression, "(",optional(seq($._expression, repeat(seq(",", $._expression)))) ,")"
+      field("callee",$._callable_expression), "(",optional(seq($._expression, repeat(seq(",", $._expression)))) ,")"
     ),
     binary_expresion: $ => choice(
       prec.left(1, seq($._expression, "<", $._expression)),
