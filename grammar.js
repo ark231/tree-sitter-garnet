@@ -86,6 +86,7 @@ module.exports = grammar({
       $.variable_definition_sentence,
       $.return_sentence,
       $.break_sentence,
+      $.assert_sentence
     ),
     expression_sentence: $ => seq($._expression, ";"),
     variable_declaration_sentence: $ => seq($.variable_declaration, ";"),
@@ -97,6 +98,7 @@ module.exports = grammar({
     ),
     _uncallable_expression: $ => choice(
       $.binary_expresion,
+      $.unary_expresion,
       $._literal,
       seq("(", $._uncallable_expression, ")"),
     ),
@@ -112,22 +114,39 @@ module.exports = grammar({
       prec.left(1, seq($._expression, ">", $._expression)),
       prec.left(1, seq($._expression, "<=", $._expression)),
       prec.left(1, seq($._expression, ">=", $._expression)),
-      prec.left(2, seq($._expression, "==", $._expression)),
+      prec.left(1, seq($._expression, "==", $._expression)),
       prec.left(2, seq($._expression, "=", $._expression)),
+      prec.left(2, seq($._expression, "+=", $._expression)),
+      prec.left(2, seq($._expression, "-=", $._expression)),
+      prec.left(2, seq($._expression, "*=", $._expression)),
+      prec.left(2, seq($._expression, "/=", $._expression)),
+      prec.left(2, seq($._expression, "%=", $._expression)),
       prec.left(3, seq($._expression, "+", $._expression)),
       prec.left(3, seq($._expression, "-", $._expression)),
       prec.left(4, seq($._expression, "*", $._expression)),
       prec.left(4, seq($._expression, "/", $._expression)),
       prec.left(4, seq($._expression, "%", $._expression)),
     ),
+    unary_expresion: $ => choice(
+      prec.left(5, seq("+", $._expression)),
+      prec.left(5, seq("-", $._expression)),
+      prec.left(5, seq("not", $._expression)),
+      prec.left(5, seq("!", $._expression)),
+      prec.left(5, seq("bit_not", $._expression)),
+      prec.left(5, seq("~", $._expression)),
+    ),
     _literal: $ => choice(
       $.integer_literal,
       $.floating_point_literal,
       $.string_literal,
+      $.boolean_literal,
+      $.nil_literal,
     ),
     integer_literal: $ => /\d+/,
     floating_point_literal: $ => /\d+\.\d+/,
     string_literal: $ => /"([^"]|\\")*"/,
+    boolean_literal: $ => choice("true", "false"),
+    nil_literal: $ => "nil",
     variable_reference_expression: $ => $.identifier,
     variable_declaration: $ => seq(
       choice("var", "let"),
@@ -168,12 +187,30 @@ module.exports = grammar({
       "else",
       $.block
     ),
+    for_statement: $ => seq(
+      "for",
+      "(",
+      optional($.variable_definition),
+      ";",
+      optional($._expression),
+      ";",
+      optional($._expression),
+      ")",
+      $.block
+    ),
     _blocky: $ => choice(
       $.loop_statement,
       $.if_statement,
       $.elif_statement,
       $.else_statement,
-    )
+      $.for_statement,
+    ),
+    assert_sentence: $ => seq(
+      "assert",
+      $._expression,
+      optional(seq(",", $._expression)),
+      ";"
+    ),
   },
   extras: $ => [/[ ]|\t|(\r?\n)/, $.multiline_comment, $.oneline_comment]
 });
